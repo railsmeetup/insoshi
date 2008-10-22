@@ -185,13 +185,7 @@ describe Person do
       it "should have common contacts with someone" do
         @person.common_contacts_with(@kelly).should contain(@contact)
       end
-      
-      it "should not include non-common contacts" do
-        new_contact = people(:admin)
-        Connection.connect(@person, new_contact)
-        @person.common_contacts_with(@kelly).should_not contain(new_contact)
-      end
-      
+
       it "should exclude deactivated people from common contacts" do
         @contact.toggle!(:deactivated)
         common_contacts = @person.common_contacts_with(@kelly)
