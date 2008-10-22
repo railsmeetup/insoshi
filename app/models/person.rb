@@ -375,7 +375,23 @@ class Person < ActiveRecord::Base
    contacts & other_person.contacts
  end
   
-  
+
+
+
+ # # Return the common contacts with the given person.
+ # def common_contacts_with(other_person)
+ #   sql = %(SELECT DISTINCT contact_id FROM connections
+ #           INNER JOIN people contact ON connections.contact_id = contact.id
+ #           WHERE ((person_id = ? OR person_id = ?)
+ #                  AND status = ? AND
+ #                  contact.deactivated = ? AND
+ #                  (contact.email_verified IS NULL
+ #                   OR contact.email_verified = ?))
+ #           GROUP BY contact_id
+ #           HAVING count(contact_id) = 2)
+ #   conditions = [sql, id, other_person.id, Connection::ACCEPTED, false, true]
+ #   Person.find(Connection.find_by_sql(conditions).map(&:contact_id))
+ # end
   
   
   
