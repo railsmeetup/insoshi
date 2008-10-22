@@ -364,6 +364,7 @@ class Person < ActiveRecord::Base
   def common_contacts_with(contact, options = {})
     # I tried to do this in SQL for efficiency, but failed miserably.
     # Horrifyingly, MySQL lacks support for the INTERSECT keyword.
+    # Foo
     (contacts & contact.contacts).paginate(options)
   end
   
