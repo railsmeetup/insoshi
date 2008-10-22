@@ -22,9 +22,7 @@ class PeopleController < ApplicationController
     end
     if logged_in?
       @some_contacts = @person.some_contacts
-      @common_contacts = current_person.common_contacts_with(@person,
-                                                             :page => 
-                                                                params[:page])
+      @common_contacts = current_person.common_contacts_with(@person)
     end
     respond_to do |format|
       format.html
@@ -134,8 +132,7 @@ class PeopleController < ApplicationController
   
   def common_contacts
     @person = Person.find(params[:id])
-    @common_contacts = @person.common_contacts_with(current_person,
-                                                    :page => params[:page])
+    @common_contacts = @person.common_contacts_with(current_person)
     respond_to do |format|
       format.html
     end
