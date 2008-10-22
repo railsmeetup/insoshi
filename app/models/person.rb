@@ -382,9 +382,8 @@ class Person < ActiveRecord::Base
            GROUP BY contact_id
            HAVING count(contact_id) = 2)
    conditions = [sql, id, other_person.id, Connection::ACCEPTED, false, true]
-   @common_contacts ||= Person.find(Connection.find_by_sql(conditions).
-                                    map(&:contact_id))
-  end
+   Person.find(Connection.find_by_sql(conditions).map(&:contact_id))
+ end
   
   
   
